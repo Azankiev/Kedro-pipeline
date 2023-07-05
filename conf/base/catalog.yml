@@ -1,0 +1,84 @@
+# Here you can define all your data sets by using simple YAML syntax.
+#
+# Documentation for this file format can be found in "The Data Catalog"
+# Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+
+accounts_per_organization:
+    type: pandas.CSVDataSet
+    filepath: data/01_raw/accounts_per_organization.csv
+    load_args:
+        dtype: {Account ID: int}
+
+# S3 datasets:
+s3_pocs_cur_dataset:
+    type: PartitionedDataSet
+    credentials: pocs_s3
+    path: s3://cur-billing-pocs/CUR/CUR/CUR/
+    dataset:
+        type: pandas.ParquetDataSet
+
+s3_intelbras_cur_dataset:
+    type: PartitionedDataSet
+    credentials: intelbras_s3
+    path: s3://cudos-intelbras/CUDOS/cudos/cudos/
+    dataset:
+        type: pandas.ParquetDataSet
+
+s3_infra2_cur_dataset:
+    type: PartitionedDataSet
+    credentials: infra2_s3
+    path: s3://cur-datarain2/cur/CUR/CUR/
+    dataset:
+        type: pandas.ParquetDataSet
+
+# 01_raw datasets:
+pocs_cur_dataset:
+    type: PartitionedDataSet
+    path: data/01_raw/pocs_cur_dataset
+    dataset:
+        type: pandas.CSVDataSet
+        save_args:
+            index: false
+
+intelbras_cur_dataset:
+    type: PartitionedDataSet
+    path: data/01_raw/intelbras_cur_dataset
+    dataset:
+        type: pandas.CSVDataSet
+        save_args:
+            index: false
+
+infra2_cur_dataset:
+    type: PartitionedDataSet
+    path: data/01_raw/infra2_cur_dataset
+    dataset:
+        type: pandas.CSVDataSet
+        save_args:
+            index: false
+
+# 02_intermediate datasets:
+pocs_cur_dataset_enriched:
+    type: PartitionedDataSet
+    path: data/01_raw/pocs_cur_dataset
+    dataset:
+        type: pandas.CSVDataSet
+        save_args:
+            index: false
+
+intelbras_cur_dataset_enriched:
+    type: PartitionedDataSet
+    path: data/01_raw/intelbras_cur_dataset
+    dataset:
+        type: pandas.CSVDataSet
+        save_args:
+            index: false
+
+infra2_cur_dataset_enriched:
+    type: PartitionedDataSet
+    path: data/01_raw/infra2_cur_dataset
+    dataset:
+        type: pandas.CSVDataSet
+        save_args:
+            index: false
+
+
