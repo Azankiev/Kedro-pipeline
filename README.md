@@ -1,4 +1,4 @@
-# cost-pipeline
+# datarain AWS CUR (Cost and Usage Report) Finops
 
 ## Overview
 
