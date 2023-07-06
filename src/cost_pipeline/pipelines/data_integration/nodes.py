@@ -39,16 +39,26 @@ def _s3_key_formatter(s3_key: str) -> str:
     
     return f'{year}_{month}_{fname}'
 
+
 def _lazy_preprocessing(s3_key, df_loader: Callable[[], Any], params: Dict) -> pd.DataFrame:
 
     logger.info(f'Preprocessing {s3_key}...')
     df_cur = df_loader()
     logger.info(f'File {s3_key} has dimensions: {df_cur.shape}')
 
+
     df_cur = df_cur[params['kept_columns']].copy()
     nrows = df_cur.shape[0]
     df_cur = df_cur.drop_duplicates()
     logger.info(f'{nrows - df_cur.shape[0]} duplicated rows were dropped.')
+
+    # Apply zero left padding to ID columns. When reading Parquet files with Pandas we can't choose dtypes.
+    # By default, it converts all IDs to int, deleting all the zeros on the left.
+    # By observation, all account IDs have 12 digits.
+    account_id_digits = 12
+    account_id_cols = [col for col in df_cur.columns if 'account_id' in col]
+    for col in account_id_cols:
+        df_cur[col] = df_cur[col].astype(str).str.pad(account_id_digits, side='left', fillchar='0')
     
     logger.info(f'File {s3_key} preprocessed successfully.')
 

@@ -39,6 +39,8 @@ pocs_cur_dataset:
         type: pandas.CSVDataSet
         save_args:
             index: false
+        load_args:
+            dtype: {bill_payer_account_id: str, line_item_usage_account_id: str}
 
 intelbras_cur_dataset:
     type: PartitionedDataSet
@@ -47,6 +49,8 @@ intelbras_cur_dataset:
         type: pandas.CSVDataSet
         save_args:
             index: false
+        load_args:
+            dtype: {bill_payer_account_id: str, line_item_usage_account_id: str}
 
 infra2_cur_dataset:
     type: PartitionedDataSet
@@ -55,6 +59,8 @@ infra2_cur_dataset:
         type: pandas.CSVDataSet
         save_args:
             index: false
+        load_args:
+            dtype: {bill_payer_account_id: str, line_item_usage_account_id: str}
 
 # 02_intermediate datasets:
 pocs_cur_dataset_enriched:
