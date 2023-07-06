@@ -3,12 +3,6 @@
 # Documentation for this file format can be found in "The Data Catalog"
 # Link: https://docs.kedro.org/en/stable/data/data_catalog.html
 
-accounts_per_organization:
-    type: pandas.CSVDataSet
-    filepath: data/01_raw/accounts_per_organization.csv
-    load_args:
-        dtype: {Account ID: int}
-
 # S3 datasets:
 s3_pocs_cur_dataset:
     type: PartitionedDataSet
@@ -32,6 +26,14 @@ s3_infra2_cur_dataset:
         type: pandas.ParquetDataSet
 
 # 01_raw datasets:
+accounts_per_organization:
+    type: pandas.CSVDataSet
+    filepath: data/01_raw/accounts_per_organization.csv
+    load_args:
+        dtype: {Account ID: int}
+    save_args:
+        index: false
+
 pocs_cur_dataset:
     type: PartitionedDataSet
     path: data/01_raw/pocs_cur_dataset
@@ -63,28 +65,35 @@ infra2_cur_dataset:
             dtype: {bill_payer_account_id: str, line_item_usage_account_id: str}
 
 # 02_intermediate datasets:
-pocs_cur_dataset_enriched:
-    type: PartitionedDataSet
-    path: data/01_raw/pocs_cur_dataset
-    dataset:
-        type: pandas.CSVDataSet
-        save_args:
-            index: false
+processed_accounts_per_organization:
+    type: pandas.CSVDataSet
+    filepath: data/02_intermediate/accounts_per_organization.csv
+    load_args:
+        dtype: {account_id: int}
+    save_args:
+        index: false
 
-intelbras_cur_dataset_enriched:
-    type: PartitionedDataSet
-    path: data/01_raw/intelbras_cur_dataset
-    dataset:
-        type: pandas.CSVDataSet
-        save_args:
-            index: false
+pocs_cur_dataset_merged:
+    type: pandas.CSVDataSet
+    filepath: data/02_intermediate/pocs_cur_dataset_merged.csv
+    load_args:
+        dtype: {bill_payer_account_id: str, line_item_usage_account_id: str}
+    save_args:
+        index: false
 
-infra2_cur_dataset_enriched:
-    type: PartitionedDataSet
-    path: data/01_raw/infra2_cur_dataset
-    dataset:
-        type: pandas.CSVDataSet
-        save_args:
-            index: false
+intelbras_cur_dataset_merged:
+    type: pandas.CSVDataSet
+    filepath: data/02_intermediate/intelbras_cur_dataset_merged.csv
+    load_args:
+        dtype: {bill_payer_account_id: str, line_item_usage_account_id: str}
+    save_args:
+        index: false
 
+infra2_cur_dataset_merged:
+    type: pandas.CSVDataSet
+    filepath: data/02_intermediate/infra2_cur_dataset_merged.csv
+    load_args:
+        dtype: {bill_payer_account_id: str, line_item_usage_account_id: str}
+    save_args:
+        index: false
 
