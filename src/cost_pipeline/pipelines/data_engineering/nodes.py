@@ -44,11 +44,12 @@ def aggregate_invoice_account_products(df_cur_merged: pd.DataFrame) -> pd.DataFr
 
     logger.info('Aggregating CUR by invoice, bill date, account ID and product...')
     agg_mapping = {'line_item_unblended_cost':'sum', 'discount_spp_discount': 'sum', 'discount_total_discount': 'sum'}
-    df_cur_merged = df_cur_merged.groupby(by=['bill_invoice_id', 'bill_billing_entity', 'bill_invoicing_entity', 
-                                              'bill_payer_account_id', 'payer_account_name', 'line_item_usage_account_id', 'usage_account_name',
-                                              'line_item_line_item_type', 'line_item_usage_start_date', 
-                                              'line_item_usage_end_date', 'product_product_name', 
-                                              'line_item_currency_code']).agg(agg_mapping).reset_index()   
+    df_cur_merged = df_cur_merged.groupby(by=['bill_invoice_id', 'bill_billing_period_start_date', 'bill_billing_period_end_date',
+                                                'bill_billing_entity', 'bill_invoicing_entity', 
+                                                'bill_payer_account_id', 'payer_account_name', 'line_item_usage_account_id', 'usage_account_name',
+                                                'line_item_line_item_type', 'line_item_usage_start_date', 
+                                                'line_item_usage_end_date', 'product_product_name', 
+                                                'line_item_currency_code']).agg(agg_mapping).reset_index()   
     logger.info('Aggregation is done.')
     
     return df_cur_merged
