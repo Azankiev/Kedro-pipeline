@@ -11,9 +11,12 @@ import logging
 logger = logging.getLogger(__name__)
 
 def preprocess_accounts_per_org(accounts_per_org: pd.DataFrame) -> pd.DataFrame:
+    account_id_digits = 12
 
     df = accounts_per_org[['Account ID', 'Name']].copy()
     df = df.rename(columns={'Account ID': 'account_id', 'Name': 'name'})
+    df['account_id'] = df['account_id'].astype(str)
+    df['account_id'] = df['account_id'].str.pad(account_id_digits, side='left', fillchar='0')
     df = df.drop_duplicates()
 
     return df
@@ -40,10 +43,12 @@ def merge_cur_partitions(cur_dataset: Dict[str, Callable[[], Any]]) -> pd.DataFr
 def aggregate_invoice_account_products(df_cur_merged: pd.DataFrame) -> pd.DataFrame:
 
     logger.info('Aggregating CUR by invoice, bill date, account ID and product...')
+    agg_mapping = {'line_item_unblended_cost':'sum', 'discount_spp_discount': 'sum', 'discount_total_discount': 'sum'}
     df_cur_merged = df_cur_merged.groupby(by=['bill_invoice_id', 'bill_billing_entity', 'bill_invoicing_entity', 
                                               'bill_payer_account_id', 'payer_account_name', 'line_item_usage_account_id', 'usage_account_name',
                                               'line_item_line_item_type', 'line_item_usage_start_date', 
-                                              'line_item_usage_end_date', 'product_product_name', 'line_item_currency_code'])['line_item_unblended_cost'].sum().reset_index()   
+                                              'line_item_usage_end_date', 'product_product_name', 
+                                              'line_item_currency_code']).agg(agg_mapping).reset_index()   
     logger.info('Aggregation is done.')
     
     return df_cur_merged
