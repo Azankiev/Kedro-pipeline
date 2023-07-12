@@ -106,3 +106,12 @@ infra2_cur_dataset_agg:
     save_args:
         index: false
 
+# 04_feature datasets:
+infra2_agg_invoices:
+    type: pandas.CSVDataSet
+    filepath: data/04_feature/infra2_agg_invoices.csv
+    load_args:
+        dtype: {bill_payer_account_id: str, line_item_usage_account_id: str}
+    save_args:
+        index: false
+
