@@ -1,5 +1,18 @@
 data_prep_raw_params:
+  # The original CUR file has more than 250 columns. This initial filter helps to work with a smaller file.
   kept_columns: ['identity_line_item_id', 'bill_invoice_id', 'bill_billing_entity', 'bill_invoicing_entity', 'line_item_legal_entity', 'bill_payer_account_id', 'line_item_usage_account_id', 'line_item_line_item_type', 
                   'bill_billing_period_start_date', 'bill_billing_period_end_date', 'line_item_usage_start_date', 'line_item_usage_end_date', 'line_item_usage_amount',
                   'line_item_product_code', 'product_product_name', 'line_item_usage_type', 'line_item_operation', 'product_from_location_type',  
                   'product_from_region_code', 'line_item_tax_type', 'line_item_currency_code', 'line_item_unblended_cost', 'discount_spp_discount', 'discount_total_discount']
+
+data_analytics_params:
+  # These columns represent a unique line of a an invoice (note that many different invoices can be present here). 
+  unique_invoice_line_columns: ['bill_invoice_id', 'bill_payer_account_id', 'bill_billing_period_start_date', 'bill_billing_period_end_date', 'line_item_usage_account_id', 
+                                  'usage_account_name', 'product_product_name']
+  # The column that shows the cost of all different items in the invoice: Usage, Fee, Tax, Credits, Refund.
+  # The meaning of the cost depends on the column line_item_line_item_type which has values in [Usage, Tax, Credit, Refund, Fee].
+  cost_column: line_item_unblended_cost
+  # Identifies the row cost as Usage, Tax, Credit, Refund or Fee.
+  item_type_column: line_item_line_item_type
+  # SPP discount value.
+  discount_spp_column: discount_spp_discount

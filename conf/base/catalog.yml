@@ -3,6 +3,15 @@
 # Documentation for this file format can be found in "The Data Catalog"
 # Link: https://docs.kedro.org/en/stable/data/data_catalog.html
 
+# 00_test datasets: Test pipelines against groundtruth results validated by finance team.
+2023_05_infra2_agg_invoices:
+    type: pandas.CSVDataSet
+    filepath: data/00_test/2023_05_infra2_agg_invoices.csv
+    load_args:
+        dtype: {bill_payer_account_id: str, line_item_usage_account_id: str}
+    save_args:
+        index: false
+
 # S3 datasets:
 s3_pocs_cur_dataset:
     type: PartitionedDataSet
