@@ -16,21 +16,23 @@ def create_pipeline(**kwargs) -> Pipeline:
             tags=['de_infra2', 'infra2']
         ),
         node(
-            func=merge_cur_partitions,
+            func=aggregate_invoice_account_products,
             inputs='infra2_cur_dataset',
-            outputs='infra2_cur_dataset_merged',
+            outputs='infra2_cur_dataset_agg',
             tags=['de_infra2', 'infra2']
         ),
         node(
             func=add_account_names,
-            inputs=['infra2_cur_dataset_merged', 'processed_accounts_per_organization'],
+            inputs=['infra2_cur_dataset_agg', 'processed_accounts_per_organization'],
             outputs='infra2_cur_dataset_enriched',
             tags=['de_infra2', 'infra2', 'infra2_add_account_names']
         ),
-        node(
-            func=aggregate_invoice_account_products,
-            inputs='infra2_cur_dataset_enriched',
-            outputs='infra2_cur_dataset_agg',
-            tags=['de_infra2', 'infra2']
-        )
+        # node(
+        #     func=merge_cur_partitions,
+        #     inputs='infra2_cur_dataset',
+        #     outputs='infra2_cur_dataset_merged',
+        #     tags=['de_infra2', 'infra2']
+        # ),
+
+
     ], tags='de')

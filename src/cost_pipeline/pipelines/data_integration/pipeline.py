@@ -27,8 +27,9 @@ def create_pipeline(**kwargs) -> Pipeline:
         node(
             func=preprocess_cur, 
             inputs=['s3_infra2_cur_dataset', 
-                    'params:data_prep_raw_params'], 
+                    'parameters'], 
             outputs='infra2_cur_dataset',
+            name='infra2_preprocess_cur',
             tags=['di_infra2', 'infra2']
         )
     ], tags='di')

@@ -17,3 +17,5 @@ data_analytics_params:
   item_type_column: line_item_line_item_type
   # SPP discount value.
   discount_spp_column: discount_spp_discount
+  # Total discount value.
+  discount_total_column: discount_total_discount

@@ -4,8 +4,11 @@ generated using Kedro 0.18.10
 """
 from typing import Callable, Dict, Any
 import logging
+import os
 
 import pandas as pd
+
+from kedro.config import ConfigLoader
 
 
 logger = logging.getLogger(__name__)
@@ -39,7 +42,6 @@ def _s3_key_formatter(s3_key: str) -> str:
     
     return f'{year}_{month}_{fname}'
 
-
 def _lazy_preprocessing(s3_key, df_loader: Callable[[], Any], params: Dict) -> pd.DataFrame:
 
     logger.info(f'Preprocessing {s3_key}...')
@@ -47,13 +49,26 @@ def _lazy_preprocessing(s3_key, df_loader: Callable[[], Any], params: Dict) -> p
     logger.info(f'File {s3_key} has dimensions: {df_cur.shape}')
 
     try:
-        df_cur = df_cur[params['kept_columns']].copy()
+        df_cur = df_cur[params['data_prep_raw_params']['kept_columns']].copy()
     except KeyError as e:
-        kept_columns = set(params['kept_columns'])
+
+        # Adds missing SPP discount column.
+        if params['data_analytics_params']['discount_spp_column'] not in df_cur.columns:
+            df_cur[params['data_analytics_params']['discount_spp_column']] = 0
+        if params['data_analytics_params']['discount_total_column'] not in df_cur.columns:
+            df_cur[params['data_analytics_params']['discount_total_column']] = 0
+        # TODO: Add other types of discounts & numerical columns that might be missing.
+
+        kept_columns = set(params['data_prep_raw_params']['kept_columns'])
         existing_columns = set(df_cur.columns)
+        missing_columns = kept_columns - existing_columns
         subset = list(kept_columns.intersection(existing_columns))
-        logger.warning(f'The columns [{e}] from the params:kept_columns are not present in the file [{s3_key}]. Using subset of columns instead [{subset}].')
-        df_cur = df_cur[subset]
+        logger.warning(f'''The columns [{missing_columns}] from the params:data_prep_raw_params:kept_columns are not present in the file [{s3_key}]. 
+                       Using subset of columns instead [{subset}] and intializing missing columns with "".''')
+        for col in missing_columns:
+            df_cur[col] = 'missing'
+
+        df_cur = df_cur[params['data_prep_raw_params']['kept_columns']]
 
     nrows = df_cur.shape[0]
     df_cur = df_cur.drop_duplicates()

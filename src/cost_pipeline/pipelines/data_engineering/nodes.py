@@ -5,7 +5,7 @@ generated using Kedro 0.18.10
 
 import pandas as pd
 
-from typing import Callable, Any, Dict
+from typing import Callable, Any, Dict, List, Tuple
 import logging
 
 logger = logging.getLogger(__name__)
@@ -31,6 +31,56 @@ def add_account_names(df_cur: pd.DataFrame, df_accounts_per_org: pd.DataFrame) -
 
     return df_cur
 
+def _lazy_aggregate_invoice_account_products(fname, group: List[Callable[[], Any]]) -> pd.DataFrame:
+
+    df_partitions = []
+    for df_loader in group:
+        df_partitions.append(df_loader())
+    
+    df_cur = pd.concat(df_partitions)
+
+    logger.info(f'[{fname}] Aggregating CUR by invoice, bill date, account ID and product...')
+    agg_mapping = {'line_item_unblended_cost':'sum', 'discount_spp_discount': 'sum', 'discount_total_discount': 'sum'}
+    df_cur = df_cur.groupby(by=['bill_invoice_id', 'bill_billing_period_start_date', 'bill_billing_period_end_date',
+                                                'bill_billing_entity', 'bill_invoicing_entity', 
+                                                'bill_payer_account_id', 'payer_account_name', 'line_item_usage_account_id', 'usage_account_name',
+                                                'line_item_line_item_type', 'line_item_usage_start_date', 
+                                                'line_item_usage_end_date', 'product_product_name', 
+                                                'line_item_currency_code']).agg(agg_mapping).reset_index()   
+    logger.info(f'[{fname}] Aggregation is done.')
+    
+    return df_cur
+
+def _group_month_year(cur_dataset: List[Tuple[str, Callable[[], Any]]]) -> Dict[str, Callable[[], Any]]:
+
+    month_year_groups = {}
+
+    logger.info('Grouping files by year-month...')
+    for fpath, df_loader in cur_dataset:
+        year_month, _ = fpath.split('-')
+        year_month = f'{year_month}.csv'
+        if year_month in month_year_groups:
+            month_year_groups[year_month].append(df_loader)
+        else:
+            month_year_groups[year_month] = [df_loader]
+    logger.info(f'All year-month groups: {month_year_groups.keys()}')
+    logger.info('Finished grouping files by year-month.')
+
+    return month_year_groups
+
+def aggregate_invoice_account_products(cur_dataset: Dict[str, Callable[[], Any]]) -> pd.DataFrame:
+
+    all_files = sorted(list(cur_dataset.items()), key=lambda x: x[0])
+    logger.info(f'Found {len(all_files)} to load.')
+
+    grouped_files = _group_month_year(all_files)
+
+    return {
+        group_key : lambda vars=[group_key, group]: _lazy_aggregate_invoice_account_products(vars[0], vars[1]) 
+            for group_key, group in grouped_files.items()
+    }
+
+
 def merge_cur_partitions(cur_dataset: Dict[str, Callable[[], Any]]) -> pd.DataFrame:
 
     loaded_partitions = []
@@ -39,17 +89,3 @@ def merge_cur_partitions(cur_dataset: Dict[str, Callable[[], Any]]) -> pd.DataFr
         loaded_partitions.append(fileloader())
     
     return pd.concat(loaded_partitions)
-
-def aggregate_invoice_account_products(df_cur_merged: pd.DataFrame) -> pd.DataFrame:
-
-    logger.info('Aggregating CUR by invoice, bill date, account ID and product...')
-    agg_mapping = {'line_item_unblended_cost':'sum', 'discount_spp_discount': 'sum', 'discount_total_discount': 'sum'}
-    df_cur_merged = df_cur_merged.groupby(by=['bill_invoice_id', 'bill_billing_period_start_date', 'bill_billing_period_end_date',
-                                                'bill_billing_entity', 'bill_invoicing_entity', 
-                                                'bill_payer_account_id', 'payer_account_name', 'line_item_usage_account_id', 'usage_account_name',
-                                                'line_item_line_item_type', 'line_item_usage_start_date', 
-                                                'line_item_usage_end_date', 'product_product_name', 
-                                                'line_item_currency_code']).agg(agg_mapping).reset_index()   
-    logger.info('Aggregation is done.')
-    
-    return df_cur_merged

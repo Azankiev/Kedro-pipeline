@@ -74,6 +74,8 @@ infra2_cur_dataset:
             dtype: {bill_payer_account_id: str, line_item_usage_account_id: str}
 
 # 02_intermediate datasets:
+
+
 processed_accounts_per_organization:
     type: pandas.CSVDataSet
     filepath: data/02_intermediate/accounts_per_organization.csv
@@ -81,6 +83,16 @@ processed_accounts_per_organization:
         dtype: {account_id: str}
     save_args:
         index: false
+
+infra2_cur_dataset_agg:
+    type: PartitionedDataSet
+    path: data/02_intermediate/infra2_cur_dataset
+    dataset:
+        type: pandas.CSVDataSet
+        load_args:
+            dtype: {bill_payer_account_id: str, line_item_usage_account_id: str}
+        save_args:
+            index: false
 
 pocs_cur_dataset_merged:
     type: pandas.CSVDataSet
@@ -107,13 +119,6 @@ infra2_cur_dataset_merged:
         index: false
 
 # 03_primary datasets:
-infra2_cur_dataset_agg:
-    type: pandas.CSVDataSet
-    filepath: data/03_primary/infra2_cur_dataset_agg.csv
-    load_args:
-        dtype: {bill_payer_account_id: str, line_item_usage_account_id: str}
-    save_args:
-        index: false
 
 # 04_feature datasets:
 infra2_agg_invoices:
