@@ -10,6 +10,9 @@ import pandas as pd
 logger = logging.getLogger(__name__)
 
 def generate_aggregated_invoices(df_agg: pd.DataFrame, params: Dict) -> pd.DataFrame:
+    '''
+    
+    '''
 
     logger.info('Generating aggregated invoices...')
 

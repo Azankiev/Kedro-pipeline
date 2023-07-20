@@ -46,8 +46,15 @@ def _lazy_preprocessing(s3_key, df_loader: Callable[[], Any], params: Dict) -> p
     df_cur = df_loader()
     logger.info(f'File {s3_key} has dimensions: {df_cur.shape}')
 
+    try:
+        df_cur = df_cur[params['kept_columns']].copy()
+    except KeyError as e:
+        kept_columns = set(params['kept_columns'])
+        existing_columns = set(df_cur.columns)
+        subset = list(kept_columns.intersection(existing_columns))
+        logger.warning(f'The columns [{e}] from the params:kept_columns are not present in the file [{s3_key}]. Using subset of columns instead [{subset}].')
+        df_cur = df_cur[subset]
 
-    df_cur = df_cur[params['kept_columns']].copy()
     nrows = df_cur.shape[0]
     df_cur = df_cur.drop_duplicates()
     logger.info(f'{nrows - df_cur.shape[0]} duplicated rows were dropped.')
@@ -68,7 +75,7 @@ def preprocess_cur(cur_dataset: Dict[str, Callable[[], Any]], params: Dict) -> D
     
     all_files = sorted(list(cur_dataset.items()), key=lambda x: _s3_key_formatter(x[0]))
     # TODO: Delete this limit, it's for test only.
-    all_files = [f for f in all_files if 'year=2023' in f[0] and 'month=5' in f[0]]
+    # all_files = [f for f in all_files if 'year=2023' in f[0] and 'month=5' in f[0]]
     logger.info(f'Found {len(all_files)} to load.')
 
     return {

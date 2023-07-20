@@ -7,6 +7,7 @@ data_prep_raw_params:
 
 data_analytics_params:
   # These columns represent a unique line of a an invoice (note that many different invoices can be present here). 
+  # This is the most important set of columns and it's obligatory.
   unique_invoice_line_columns: ['bill_invoice_id', 'bill_payer_account_id', 'bill_billing_period_start_date', 'bill_billing_period_end_date', 'line_item_usage_account_id', 
                                   'usage_account_name', 'product_product_name']
   # The column that shows the cost of all different items in the invoice: Usage, Fee, Tax, Credits, Refund.
