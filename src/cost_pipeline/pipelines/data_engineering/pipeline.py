@@ -24,7 +24,7 @@ def create_pipeline(**kwargs) -> Pipeline:
         node(
             func=add_account_names,
             inputs=['infra2_cur_dataset_agg', 'processed_accounts_per_organization'],
-            outputs='infra2_cur_dataset_enriched',
+            outputs='infra2_cur_dataset_agg_enriched',
             tags=['de_infra2', 'infra2', 'infra2_add_account_names']
         ),
         # node(

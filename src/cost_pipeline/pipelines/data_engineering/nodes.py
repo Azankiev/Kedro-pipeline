@@ -21,15 +21,38 @@ def preprocess_accounts_per_org(accounts_per_org: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-def add_account_names(df_cur: pd.DataFrame, df_accounts_per_org: pd.DataFrame) -> pd.DataFrame:
+def _lazy_add_account_names(fname: str, df_cur_loader: Callable[[], Any], df_accounts_per_org: pd.DataFrame) -> pd.DataFrame:
 
-    logger.info('Adding account names...')
+    df_cur = df_cur_loader()
+    logger.info(f'Adding account_names to [{fname}]...')
     df_cur = df_cur.merge(df_accounts_per_org, how='left', left_on='bill_payer_account_id', right_on='account_id', suffixes=('', '_payer'), validate='many_to_one')
     df_cur = df_cur.rename(columns={'name': 'payer_account_name'})
     df_cur = df_cur.merge(df_accounts_per_org, how='left', left_on='line_item_usage_account_id', right_on='account_id', suffixes=('', '_usage'), validate='many_to_one')
     df_cur = df_cur.rename(columns={'name': 'usage_account_name'})
+    logger.info(f'Account names added to [{fname}].')
+
+    # Fixing columns.
+    df_cur = df_cur[['bill_invoice_id', 'bill_billing_period_start_date', 'bill_billing_period_end_date',
+                                                'bill_billing_entity', 'bill_invoicing_entity', 
+                                                'bill_payer_account_id', 'payer_account_name', 'line_item_usage_account_id', 'usage_account_name',
+                                                'line_item_line_item_type', 'line_item_usage_start_date', 
+                                                'line_item_usage_end_date', 'product_product_name', 
+                                                'line_item_currency_code']]
 
     return df_cur
+
+
+def add_account_names(cur_dataset: Dict[str, Callable[[], Any]], df_accounts_per_org: pd.DataFrame) -> pd.DataFrame:
+
+    logger.info('Adding account names to CUR files...')
+    all_files = sorted(list(cur_dataset.items()), key=lambda x: x[0])
+    logger.info(f'Found {len(all_files)} to add account names.')
+
+    return {
+        fname: lambda vars=[fname, loader, df_accounts_per_org]: _lazy_add_account_names(vars[0], vars[1], vars[2])
+            for fname, loader in all_files
+    }
+
 
 def _lazy_aggregate_invoice_account_products(fname, group: List[Callable[[], Any]]) -> pd.DataFrame:
 
@@ -43,7 +66,7 @@ def _lazy_aggregate_invoice_account_products(fname, group: List[Callable[[], Any
     agg_mapping = {'line_item_unblended_cost':'sum', 'discount_spp_discount': 'sum', 'discount_total_discount': 'sum'}
     df_cur = df_cur.groupby(by=['bill_invoice_id', 'bill_billing_period_start_date', 'bill_billing_period_end_date',
                                                 'bill_billing_entity', 'bill_invoicing_entity', 
-                                                'bill_payer_account_id', 'payer_account_name', 'line_item_usage_account_id', 'usage_account_name',
+                                                'bill_payer_account_id', 'line_item_usage_account_id',
                                                 'line_item_line_item_type', 'line_item_usage_start_date', 
                                                 'line_item_usage_end_date', 'product_product_name', 
                                                 'line_item_currency_code']).agg(agg_mapping).reset_index()   
@@ -51,14 +74,20 @@ def _lazy_aggregate_invoice_account_products(fname, group: List[Callable[[], Any
     
     return df_cur
 
+def _group_month_year_extractor(fpath: str):
+
+    year_month, _ = fpath.split('-')
+    year_month = f'{year_month}.csv'
+
+    return year_month
+
 def _group_month_year(cur_dataset: List[Tuple[str, Callable[[], Any]]]) -> Dict[str, Callable[[], Any]]:
 
     month_year_groups = {}
 
     logger.info('Grouping files by year-month...')
     for fpath, df_loader in cur_dataset:
-        year_month, _ = fpath.split('-')
-        year_month = f'{year_month}.csv'
+        year_month = _group_month_year_extractor(fpath)
         if year_month in month_year_groups:
             month_year_groups[year_month].append(df_loader)
         else:

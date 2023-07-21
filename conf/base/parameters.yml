@@ -4,7 +4,8 @@ data_prep_raw_params:
                   'bill_billing_period_start_date', 'bill_billing_period_end_date', 'line_item_usage_start_date', 'line_item_usage_end_date', 'line_item_usage_amount',
                   'line_item_product_code', 'product_product_name', 'line_item_usage_type', 'line_item_operation', 'product_from_location_type',  
                   'product_from_region_code', 'line_item_tax_type', 'line_item_currency_code', 'line_item_unblended_cost', 'discount_spp_discount', 'discount_total_discount']
-
+data_engineering_params:
+  
 data_analytics_params:
   # These columns represent a unique line of a an invoice (note that many different invoices can be present here). 
   # This is the most important set of columns and it's obligatory.
