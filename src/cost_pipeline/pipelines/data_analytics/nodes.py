@@ -3,16 +3,15 @@ This is a boilerplate pipeline 'data_analytics'
 generated using Kedro 0.18.10
 """
 import logging
-from typing import Dict
+from typing import Dict, Callable, Any
 
 import pandas as pd
 
 logger = logging.getLogger(__name__)
 
-def generate_aggregated_invoices(df_agg: pd.DataFrame, params: Dict) -> pd.DataFrame:
-    '''
+def _lazy_generate_aggregated_invoices(fname: str, loader: Callable[[], Any], params: Dict) -> pd.DataFrame:
     
-    '''
+    df_agg = loader()
 
     logger.info('Generating aggregated invoices...')
 
@@ -24,7 +23,8 @@ def generate_aggregated_invoices(df_agg: pd.DataFrame, params: Dict) -> pd.DataF
                                     }).reset_index()
     logger.info('Finished pre-adding totals.')
 
-    logger.info('Pivoting item types...')
+    item_type_values = df_agg_totals[params['item_type_column']].unique()
+    logger.info(f'Pivoting item types... [{list(item_type_values)}]')
     df_agg_totals_pivoted = df_agg_totals.pivot(index=params['unique_invoice_line_columns'] + [params['discount_spp_column']],
                                                 columns=params['item_type_column'], 
                                                 values=params['cost_column']).reset_index()
@@ -32,6 +32,11 @@ def generate_aggregated_invoices(df_agg: pd.DataFrame, params: Dict) -> pd.DataF
     logger.info('Item types pivoted.')
     df_agg_totals_pivoted = df_agg_totals_pivoted.fillna(0)
     logger.info('Adding up the totals... ')
+
+    # Setting non-existing numerical cost columns to 0.
+    for col in params['default_item_type_values']:
+        if col not in df_agg_totals_pivoted.columns: df_agg_totals_pivoted[col] = 0
+  
     df_agg_totals_pivoted = df_agg_totals_pivoted.groupby(by=params['unique_invoice_line_columns']).agg(
                                                                             {'discount_spp_discount': 'sum', 
                                                                               'Credit': 'sum',
@@ -49,5 +54,18 @@ def generate_aggregated_invoices(df_agg: pd.DataFrame, params: Dict) -> pd.DataF
     df_result['tax'] = df_agg_totals_pivoted['Tax']
     df_result['total'] = df_result['charges'] + df_result['discount_spp'] + df_result['credits'] + df_result['tax']
     logger.info('Totals added up.')
-    
+
     return df_result
+
+def generate_aggregated_invoices(cur_dataset: Dict[str, Callable[[], Any]], params: Dict) -> pd.DataFrame:
+    '''
+    
+    '''
+
+    all_files = sorted(list(cur_dataset.items()), key=lambda x: x[0])
+    logger.info(f'Found {len(all_files)} to load.')
+
+    return {
+        fname: lambda vars=[fname, loader, params]: _lazy_generate_aggregated_invoices(vars[0], vars[1], vars[2])
+          for fname, loader in all_files
+    }

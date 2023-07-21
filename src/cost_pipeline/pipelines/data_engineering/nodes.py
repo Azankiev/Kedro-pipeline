@@ -31,14 +31,6 @@ def _lazy_add_account_names(fname: str, df_cur_loader: Callable[[], Any], df_acc
     df_cur = df_cur.rename(columns={'name': 'usage_account_name'})
     logger.info(f'Account names added to [{fname}].')
 
-    # Fixing columns.
-    df_cur = df_cur[['bill_invoice_id', 'bill_billing_period_start_date', 'bill_billing_period_end_date',
-                                                'bill_billing_entity', 'bill_invoicing_entity', 
-                                                'bill_payer_account_id', 'payer_account_name', 'line_item_usage_account_id', 'usage_account_name',
-                                                'line_item_line_item_type', 'line_item_usage_start_date', 
-                                                'line_item_usage_end_date', 'product_product_name', 
-                                                'line_item_currency_code']]
-
     return df_cur
 
 

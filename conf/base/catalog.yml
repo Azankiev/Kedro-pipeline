@@ -123,6 +123,18 @@ intelbras_cur_dataset_merged:
 
 
 # 03_primary datasets:
+infra2_agg_invoices:
+    type: PartitionedDataSet
+    path: data/03_primary/infra2_agg_invoices
+    dataset:
+        type: pandas.CSVDataSet
+        load_args:
+            dtype: {bill_payer_account_id: str, line_item_usage_account_id: str}
+        save_args:
+            index: false
+
+# 04_feature datasets:
+
 infra2_cur_dataset_merged:
     type: pandas.CSVDataSet
     filepath: data/02_intermediate/infra2_cur_dataset_merged.csv
@@ -130,13 +142,3 @@ infra2_cur_dataset_merged:
         dtype: {bill_payer_account_id: str, line_item_usage_account_id: str}
     save_args:
         index: false
-
-# 04_feature datasets:
-infra2_agg_invoices:
-    type: pandas.CSVDataSet
-    filepath: data/04_feature/infra2_agg_invoices.csv
-    load_args:
-        dtype: {bill_payer_account_id: str, line_item_usage_account_id: str}
-    save_args:
-        index: false
-
