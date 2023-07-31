@@ -34,6 +34,13 @@ s3_infra2_cur_dataset:
     dataset:
         type: pandas.ParquetDataSet
 
+s3_rnp_cur_dataset:
+    type: PartitionedDataSet
+    credentials: rnp_s3
+    path: s3://cur-bucket-032987059970/map-credit-tracking-1/map-migrated-report/map-migrated-report/
+    dataset:
+        type: pandas.ParquetDataSet
+
 # 01_raw datasets:
 accounts_per_organization:
     type: pandas.CSVDataSet
@@ -73,6 +80,16 @@ infra2_cur_dataset:
         load_args:
             dtype: {bill_payer_account_id: str, line_item_usage_account_id: str}
 
+rnp_cur_dataset:
+    type: PartitionedDataSet
+    path: data/01_raw/rnp_cur_dataset
+    dataset:
+        type: pandas.CSVDataSet
+        save_args:
+            index: false
+        load_args:
+            dtype: {bill_payer_account_id: str, line_item_usage_account_id: str}
+
 # 02_intermediate datasets:
 
 
@@ -94,9 +111,29 @@ infra2_cur_dataset_agg:
         save_args:
             index: false
 
+rnp_cur_dataset_agg:
+    type: PartitionedDataSet
+    path: data/02_intermediate/rnp_cur_dataset
+    dataset:
+        type: pandas.CSVDataSet
+        load_args:
+            dtype: {bill_payer_account_id: str, line_item_usage_account_id: str}
+        save_args:
+            index: false
+
 infra2_cur_dataset_agg_enriched:
     type: PartitionedDataSet
     path: data/02_intermediate/infra2_cur_dataset_agg_enriched
+    dataset:
+        type: pandas.CSVDataSet
+        load_args:
+            dtype: {bill_payer_account_id: str, line_item_usage_account_id: str}
+        save_args:
+            index: false
+
+rnp_cur_dataset_agg_enriched:
+    type: PartitionedDataSet
+    path: data/02_intermediate/rnp_cur_dataset_agg_enriched
     dataset:
         type: pandas.CSVDataSet
         load_args:
@@ -133,11 +170,29 @@ infra2_agg_invoices:
         save_args:
             index: false
 
+rnp_agg_invoices:
+    type: PartitionedDataSet
+    path: data/03_primary/rnp_agg_invoices
+    dataset:
+        type: pandas.CSVDataSet
+        load_args:
+            dtype: {bill_payer_account_id: str, line_item_usage_account_id: str}
+        save_args:
+            index: false
+
 # 04_feature datasets:
 
 infra2_cur_dataset_merged:
     type: pandas.CSVDataSet
     filepath: data/02_intermediate/infra2_cur_dataset_merged.csv
+    load_args:
+        dtype: {bill_payer_account_id: str, line_item_usage_account_id: str}
+    save_args:
+        index: false
+
+rnp_cur_dataset_merged:
+    type: pandas.CSVDataSet
+    filepath: data/02_intermediate/rnp_cur_dataset_merged.csv
     load_args:
         dtype: {bill_payer_account_id: str, line_item_usage_account_id: str}
     save_args:
