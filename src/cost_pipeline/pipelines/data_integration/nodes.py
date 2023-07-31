@@ -51,19 +51,22 @@ def _lazy_preprocessing(s3_key, df_loader: Callable[[], Any], params: Dict) -> p
     try:
         df_cur = df_cur[params['data_prep_raw_params']['kept_columns']].copy()
     except KeyError as e:
-
+        
+        numerical_columns_missing = []
         # Adds missing SPP discount column.
         if params['data_analytics_params']['discount_spp_column'] not in df_cur.columns:
             df_cur[params['data_analytics_params']['discount_spp_column']] = 0
+            numerical_columns_missing.append('discount_spp_column')
         if params['data_analytics_params']['discount_total_column'] not in df_cur.columns:
             df_cur[params['data_analytics_params']['discount_total_column']] = 0
+            numerical_columns_missing.append('discount_total_column')
         # TODO: Add other types of discounts & numerical columns that might be missing.
 
         kept_columns = set(params['data_prep_raw_params']['kept_columns'])
         existing_columns = set(df_cur.columns)
         missing_columns = kept_columns - existing_columns
         subset = list(kept_columns.intersection(existing_columns))
-        logger.warning(f'''The columns [{missing_columns}] from the params:data_prep_raw_params:kept_columns are not present in the file [{s3_key}]. 
+        logger.warning(f'''The columns [{missing_columns | set(numerical_columns_missing)}] from the params:data_prep_raw_params:kept_columns are not present in the file [{s3_key}]. 
                        Using subset of columns instead [{subset}] and intializing missing columns with "".''')
         for col in missing_columns:
             df_cur[col] = 'missing'
