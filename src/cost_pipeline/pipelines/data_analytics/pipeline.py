@@ -14,5 +14,11 @@ def create_pipeline(**kwargs) -> Pipeline:
             inputs=['infra2_cur_dataset_agg_enriched', 'params:data_analytics_params'],
             outputs='infra2_agg_invoices',
             tags=['da_infra2', 'infra2']
+        ),
+        node(
+            func=generate_aggregated_invoices, 
+            inputs=['rnp_cur_dataset_agg_enriched', 'params:data_analytics_params'],
+            outputs='rnp_agg_invoices',
+            tags=['da_rnp', 'rnp']
         )
     ])

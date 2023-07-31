@@ -31,5 +31,13 @@ def create_pipeline(**kwargs) -> Pipeline:
             outputs='infra2_cur_dataset',
             name='infra2_preprocess_cur',
             tags=['di_infra2', 'infra2']
+        ),
+        node(
+            func=preprocess_cur, 
+            inputs=['s3_rnp_cur_dataset', 
+                    'parameters'], 
+            outputs='rnp_cur_dataset',
+            name='rnp_preprocess_cur',
+            tags=['di_rnp', 'rnp']
         )
     ], tags='di')
