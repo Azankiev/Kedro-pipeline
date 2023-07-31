@@ -7,8 +7,11 @@ import pandas as pd
 
 from typing import Callable, Any, Dict, List, Tuple
 import logging
+import re
 
 logger = logging.getLogger(__name__)
+
+GROUP_MONTH_YEAR_REGEX = re.compile(r'(\d{4}\_\d{2})\_([a-zA-Z\-]*)(\d{5}.csv)')
 
 def preprocess_accounts_per_org(accounts_per_org: pd.DataFrame) -> pd.DataFrame:
     account_id_digits = 12
@@ -67,9 +70,9 @@ def _lazy_aggregate_invoice_account_products(fname, group: List[Callable[[], Any
     return df_cur
 
 def _group_month_year_extractor(fpath: str):
-
-    year_month, _ = fpath.split('-')
-    year_month = f'{year_month}.csv'
+    
+    groups = GROUP_MONTH_YEAR_REGEX.match(fpath).groups()
+    year_month = f'{groups[0]}_CUR.csv'
 
     return year_month
 

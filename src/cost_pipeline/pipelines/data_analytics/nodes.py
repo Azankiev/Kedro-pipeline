@@ -13,25 +13,25 @@ def _lazy_generate_aggregated_invoices(fname: str, loader: Callable[[], Any], pa
     
     df_agg = loader()
 
-    logger.info('Generating aggregated invoices...')
+    logger.info(f'[{fname}] Generating aggregated invoices...')
 
-    logger.info('Pre-adding totals...')
+    logger.info(f'[{fname}] Pre-adding totals...')
     df_agg_totals = df_agg.groupby(by=params['unique_invoice_line_columns'] + [params['item_type_column']]).agg(
                                     {
                                             params['cost_column']: 'sum', 
                                             params['discount_spp_column']: 'sum'
                                     }).reset_index()
-    logger.info('Finished pre-adding totals.')
+    logger.info(f'[{fname}] Finished pre-adding totals.')
 
     item_type_values = df_agg_totals[params['item_type_column']].unique()
-    logger.info(f'Pivoting item types... [{list(item_type_values)}]')
+    logger.info(f'[{fname}] Pivoting item types... [{list(item_type_values)}]')
     df_agg_totals_pivoted = df_agg_totals.pivot(index=params['unique_invoice_line_columns'] + [params['discount_spp_column']],
                                                 columns=params['item_type_column'], 
                                                 values=params['cost_column']).reset_index()
 
-    logger.info('Item types pivoted.')
+    logger.info(f'[{fname}] Item types pivoted.')
     df_agg_totals_pivoted = df_agg_totals_pivoted.fillna(0)
-    logger.info('Adding up the totals... ')
+    logger.info(f'[{fname}] Adding up the totals... ')
 
     # Setting non-existing numerical cost columns to 0.
     for col in params['default_item_type_values']:
