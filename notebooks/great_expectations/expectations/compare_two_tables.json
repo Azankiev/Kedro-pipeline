@@ -1,0 +1,1899 @@
+{
+  "data_asset_type": null,
+  "expectation_suite_name": "compare_two_tables",
+  "expectations": [
+    {
+      "expectation_type": "expect_table_row_count_to_be_between",
+      "kwargs": {
+        "max_value": 391,
+        "min_value": 391
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {},
+            "metric_name": "table.row_count",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_table_columns_to_match_set",
+      "kwargs": {
+        "column_set": [
+          "charges",
+          "line_item_usage_account_id",
+          "bill_payer_account_id",
+          "credits",
+          "bill_invoice_id",
+          "usage_account_name",
+          "product_product_name",
+          "tax",
+          "bill_billing_period_start_date",
+          "discount_spp",
+          "total",
+          "bill_billing_period_end_date"
+        ],
+        "exact_match": null
+      },
+      "meta": {
+        "profiler_details": {
+          "success_ratio": 1.0
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "bill_billing_period_end_date"
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "bill_billing_period_end_date"
+            },
+            "metric_name": "column_values.nonnull.unexpected_count",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "bill_billing_period_start_date"
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "bill_billing_period_start_date"
+            },
+            "metric_name": "column_values.nonnull.unexpected_count",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "usage_account_name"
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "usage_account_name"
+            },
+            "metric_name": "column_values.nonnull.unexpected_count",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "product_product_name"
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "product_product_name"
+            },
+            "metric_name": "column_values.nonnull.unexpected_count",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "charges"
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "charges"
+            },
+            "metric_name": "column_values.nonnull.unexpected_count",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "discount_spp"
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "discount_spp"
+            },
+            "metric_name": "column_values.nonnull.unexpected_count",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "credits"
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "credits"
+            },
+            "metric_name": "column_values.nonnull.unexpected_count",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "tax"
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "tax"
+            },
+            "metric_name": "column_values.nonnull.unexpected_count",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "total"
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "total"
+            },
+            "metric_name": "column_values.nonnull.unexpected_count",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_min_to_be_between",
+      "kwargs": {
+        "column": "charges",
+        "max_value": 0.0,
+        "min_value": 0.0,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "charges"
+            },
+            "metric_name": "column.min",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_max_to_be_between",
+      "kwargs": {
+        "column": "charges",
+        "max_value": 4795.3655735078,
+        "min_value": 4795.3655735078,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "charges"
+            },
+            "metric_name": "column.max",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "charges",
+        "max_value": 4795.3655735078,
+        "min_value": 0.0,
+        "mostly": 1.0,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "column_max_values_range_estimator": {
+            "metric_configuration": {
+              "domain_kwargs": {
+                "column": "charges"
+              },
+              "metric_name": "column.max",
+              "metric_value_kwargs": null
+            },
+            "num_batches": 1
+          },
+          "column_min_values_range_estimator": {
+            "metric_configuration": {
+              "domain_kwargs": {
+                "column": "charges"
+              },
+              "metric_name": "column.min",
+              "metric_value_kwargs": null
+            },
+            "num_batches": 1
+          }
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_quantile_values_to_be_between",
+      "kwargs": {
+        "allow_relative_error": false,
+        "column": "charges",
+        "quantile_ranges": {
+          "quantiles": [
+            0.25,
+            0.5,
+            0.75
+          ],
+          "value_ranges": [
+            [
+              0.0001224,
+              0.0001224
+            ],
+            [
+              0.8866779020999969,
+              0.8866779020999969
+            ],
+            [
+              28.946120459499998,
+              28.946120459499998
+            ]
+          ]
+        }
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "charges"
+            },
+            "metric_name": "column.quantile_values",
+            "metric_value_kwargs": {
+              "allow_relative_error": false,
+              "quantiles": [
+                0.25,
+                0.5,
+                0.75
+              ]
+            }
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_median_to_be_between",
+      "kwargs": {
+        "column": "charges",
+        "max_value": 0.8866779020999969,
+        "min_value": 0.8866779020999969,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "charges"
+            },
+            "metric_name": "column.median",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_mean_to_be_between",
+      "kwargs": {
+        "column": "charges",
+        "max_value": 85.82156644039028,
+        "min_value": 85.82156644039028,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "charges"
+            },
+            "metric_name": "column.mean",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_stdev_to_be_between",
+      "kwargs": {
+        "column": "charges",
+        "max_value": 380.86209828614255,
+        "min_value": 380.86209828614255,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "charges"
+            },
+            "metric_name": "column.standard_deviation",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_min_to_be_between",
+      "kwargs": {
+        "column": "discount_spp",
+        "max_value": -767.2584915345,
+        "min_value": -767.2584915345,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "discount_spp"
+            },
+            "metric_name": "column.min",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_max_to_be_between",
+      "kwargs": {
+        "column": "discount_spp",
+        "max_value": 0.0,
+        "min_value": 0.0,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "discount_spp"
+            },
+            "metric_name": "column.max",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "discount_spp",
+        "max_value": 0.0,
+        "min_value": -767.2584915345,
+        "mostly": 1.0,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "column_max_values_range_estimator": {
+            "metric_configuration": {
+              "domain_kwargs": {
+                "column": "discount_spp"
+              },
+              "metric_name": "column.max",
+              "metric_value_kwargs": null
+            },
+            "num_batches": 1
+          },
+          "column_min_values_range_estimator": {
+            "metric_configuration": {
+              "domain_kwargs": {
+                "column": "discount_spp"
+              },
+              "metric_name": "column.min",
+              "metric_value_kwargs": null
+            },
+            "num_batches": 1
+          }
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_quantile_values_to_be_between",
+      "kwargs": {
+        "allow_relative_error": false,
+        "column": "discount_spp",
+        "quantile_ranges": {
+          "quantiles": [
+            0.25,
+            0.5,
+            0.75
+          ],
+          "value_ranges": [
+            [
+              -2.941965167299996,
+              -2.941965167299996
+            ],
+            [
+              -0.0555902277999999,
+              -0.0555902277999999
+            ],
+            [
+              -2.8647e-06,
+              -2.8647e-06
+            ]
+          ]
+        }
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "discount_spp"
+            },
+            "metric_name": "column.quantile_values",
+            "metric_value_kwargs": {
+              "allow_relative_error": false,
+              "quantiles": [
+                0.25,
+                0.5,
+                0.75
+              ]
+            }
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_median_to_be_between",
+      "kwargs": {
+        "column": "discount_spp",
+        "max_value": -0.0555902277999999,
+        "min_value": -0.0555902277999999,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "discount_spp"
+            },
+            "metric_name": "column.median",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_mean_to_be_between",
+      "kwargs": {
+        "column": "discount_spp",
+        "max_value": -10.24979157004194,
+        "min_value": -10.24979157004194,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "discount_spp"
+            },
+            "metric_name": "column.mean",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_stdev_to_be_between",
+      "kwargs": {
+        "column": "discount_spp",
+        "max_value": 50.91246208705983,
+        "min_value": 50.91246208705983,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "discount_spp"
+            },
+            "metric_name": "column.standard_deviation",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_min_to_be_between",
+      "kwargs": {
+        "column": "credits",
+        "max_value": -631.3127620916,
+        "min_value": -631.3127620916,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "credits"
+            },
+            "metric_name": "column.min",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_max_to_be_between",
+      "kwargs": {
+        "column": "credits",
+        "max_value": 0.0,
+        "min_value": 0.0,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "credits"
+            },
+            "metric_name": "column.max",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "credits",
+        "max_value": 0.0,
+        "min_value": -631.3127620916,
+        "mostly": 1.0,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "column_max_values_range_estimator": {
+            "metric_configuration": {
+              "domain_kwargs": {
+                "column": "credits"
+              },
+              "metric_name": "column.max",
+              "metric_value_kwargs": null
+            },
+            "num_batches": 1
+          },
+          "column_min_values_range_estimator": {
+            "metric_configuration": {
+              "domain_kwargs": {
+                "column": "credits"
+              },
+              "metric_name": "column.min",
+              "metric_value_kwargs": null
+            },
+            "num_batches": 1
+          }
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_quantile_values_to_be_between",
+      "kwargs": {
+        "allow_relative_error": false,
+        "column": "credits",
+        "quantile_ranges": {
+          "quantiles": [
+            0.25,
+            0.5,
+            0.75
+          ],
+          "value_ranges": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ]
+        }
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "credits"
+            },
+            "metric_name": "column.quantile_values",
+            "metric_value_kwargs": {
+              "allow_relative_error": false,
+              "quantiles": [
+                0.25,
+                0.5,
+                0.75
+              ]
+            }
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_median_to_be_between",
+      "kwargs": {
+        "column": "credits",
+        "max_value": 0.0,
+        "min_value": 0.0,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "credits"
+            },
+            "metric_name": "column.median",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_mean_to_be_between",
+      "kwargs": {
+        "column": "credits",
+        "max_value": -7.271903816703581,
+        "min_value": -7.271903816703581,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "credits"
+            },
+            "metric_name": "column.mean",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_stdev_to_be_between",
+      "kwargs": {
+        "column": "credits",
+        "max_value": 47.030610732881286,
+        "min_value": 47.030610732881286,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "credits"
+            },
+            "metric_name": "column.standard_deviation",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_min_to_be_between",
+      "kwargs": {
+        "column": "tax",
+        "max_value": -7.97,
+        "min_value": -7.97,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "tax"
+            },
+            "metric_name": "column.min",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_max_to_be_between",
+      "kwargs": {
+        "column": "tax",
+        "max_value": 541.88,
+        "min_value": 541.88,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "tax"
+            },
+            "metric_name": "column.max",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "tax",
+        "max_value": 541.88,
+        "min_value": -7.97,
+        "mostly": 1.0,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "column_max_values_range_estimator": {
+            "metric_configuration": {
+              "domain_kwargs": {
+                "column": "tax"
+              },
+              "metric_name": "column.max",
+              "metric_value_kwargs": null
+            },
+            "num_batches": 1
+          },
+          "column_min_values_range_estimator": {
+            "metric_configuration": {
+              "domain_kwargs": {
+                "column": "tax"
+              },
+              "metric_name": "column.min",
+              "metric_value_kwargs": null
+            },
+            "num_batches": 1
+          }
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_quantile_values_to_be_between",
+      "kwargs": {
+        "allow_relative_error": false,
+        "column": "tax",
+        "quantile_ranges": {
+          "quantiles": [
+            0.25,
+            0.5,
+            0.75
+          ],
+          "value_ranges": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.03,
+              0.03
+            ],
+            [
+              2.65,
+              2.65
+            ]
+          ]
+        }
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "tax"
+            },
+            "metric_name": "column.quantile_values",
+            "metric_value_kwargs": {
+              "allow_relative_error": false,
+              "quantiles": [
+                0.25,
+                0.5,
+                0.75
+              ]
+            }
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_median_to_be_between",
+      "kwargs": {
+        "column": "tax",
+        "max_value": 0.03,
+        "min_value": 0.03,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "tax"
+            },
+            "metric_name": "column.median",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_mean_to_be_between",
+      "kwargs": {
+        "column": "tax",
+        "max_value": 9.211176470588235,
+        "min_value": 9.211176470588235,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "tax"
+            },
+            "metric_name": "column.mean",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_stdev_to_be_between",
+      "kwargs": {
+        "column": "tax",
+        "max_value": 44.929259624516845,
+        "min_value": 44.929259624516845,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "tax"
+            },
+            "metric_name": "column.standard_deviation",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_min_to_be_between",
+      "kwargs": {
+        "column": "total",
+        "max_value": -7.97,
+        "min_value": -7.97,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "total"
+            },
+            "metric_name": "column.min",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_max_to_be_between",
+      "kwargs": {
+        "column": "total",
+        "max_value": 4569.9870819733,
+        "min_value": 4569.9870819733,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "total"
+            },
+            "metric_name": "column.max",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "total",
+        "max_value": 4569.9870819733,
+        "min_value": -7.97,
+        "mostly": 1.0,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "column_max_values_range_estimator": {
+            "metric_configuration": {
+              "domain_kwargs": {
+                "column": "total"
+              },
+              "metric_name": "column.max",
+              "metric_value_kwargs": null
+            },
+            "num_batches": 1
+          },
+          "column_min_values_range_estimator": {
+            "metric_configuration": {
+              "domain_kwargs": {
+                "column": "total"
+              },
+              "metric_name": "column.min",
+              "metric_value_kwargs": null
+            },
+            "num_batches": 1
+          }
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_quantile_values_to_be_between",
+      "kwargs": {
+        "allow_relative_error": false,
+        "column": "total",
+        "quantile_ranges": {
+          "quantiles": [
+            0.25,
+            0.5,
+            0.75
+          ],
+          "value_ranges": [
+            [
+              3.18741e-05,
+              3.18741e-05
+            ],
+            [
+              0.3635095125000021,
+              0.3635095125000021
+            ],
+            [
+              21.802000012,
+              21.802000012
+            ]
+          ]
+        }
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "total"
+            },
+            "metric_name": "column.quantile_values",
+            "metric_value_kwargs": {
+              "allow_relative_error": false,
+              "quantiles": [
+                0.25,
+                0.5,
+                0.75
+              ]
+            }
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_median_to_be_between",
+      "kwargs": {
+        "column": "total",
+        "max_value": 0.3635095125000021,
+        "min_value": 0.3635095125000021,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "total"
+            },
+            "metric_name": "column.median",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_mean_to_be_between",
+      "kwargs": {
+        "column": "total",
+        "max_value": 77.51104752423299,
+        "min_value": 77.51104752423299,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "total"
+            },
+            "metric_name": "column.mean",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_stdev_to_be_between",
+      "kwargs": {
+        "column": "total",
+        "max_value": 374.1987369168624,
+        "min_value": 374.1987369168624,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "total"
+            },
+            "metric_name": "column.standard_deviation",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_value_lengths_to_be_between",
+      "kwargs": {
+        "column": "bill_billing_period_end_date",
+        "max_value": 10,
+        "min_value": 10,
+        "mostly": 1.0,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "column_max_length_range_estimator": {
+            "metric_configuration": {
+              "domain_kwargs": {
+                "column": "bill_billing_period_end_date"
+              },
+              "metric_name": "column_values.length.max",
+              "metric_value_kwargs": null
+            },
+            "num_batches": 1
+          },
+          "column_min_length_range_estimator": {
+            "metric_configuration": {
+              "domain_kwargs": {
+                "column": "bill_billing_period_end_date"
+              },
+              "metric_name": "column_values.length.min",
+              "metric_value_kwargs": null
+            },
+            "num_batches": 1
+          }
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_match_regex",
+      "kwargs": {
+        "column": "bill_billing_period_end_date",
+        "mostly": 1.0,
+        "regex": "\\d+"
+      },
+      "meta": {
+        "profiler_details": {
+          "evaluated_regexes": {
+            "(?:25[0-5]|2[0-4]\\d|[01]\\d{2}|\\d{1,2})(?:.(?:25[0-5]|2[0-4]\\d|[01]\\d{2}|\\d{1,2})){3}": 1.0,
+            "-?\\d+": 1.0,
+            "-?\\d+(?:\\.\\d*)?": 1.0,
+            "<\\/?(?:p|a|b|img)(?: \\/)?>": 0.0,
+            "[A-Za-z0-9\\.,;:!?()\\\"'%\\-]+": 1.0,
+            "\\b[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}-[0-5][0-9a-fA-F]{3}-[089ab][0-9a-fA-F]{3}-\\b[0-9a-fA-F]{12}\\b ": 0.0,
+            "\\d+": 1.0,
+            "\\s+$": 0.0,
+            "^\\s+": 0.0,
+            "https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,255}\\.[a-z]{2,6}\\b(?:[-a-zA-Z0-9@:%_\\+.~#()?&//=]*)": 0.0
+          },
+          "success_ratio": 1.0
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_value_lengths_to_be_between",
+      "kwargs": {
+        "column": "bill_billing_period_start_date",
+        "max_value": 10,
+        "min_value": 10,
+        "mostly": 1.0,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "column_max_length_range_estimator": {
+            "metric_configuration": {
+              "domain_kwargs": {
+                "column": "bill_billing_period_start_date"
+              },
+              "metric_name": "column_values.length.max",
+              "metric_value_kwargs": null
+            },
+            "num_batches": 1
+          },
+          "column_min_length_range_estimator": {
+            "metric_configuration": {
+              "domain_kwargs": {
+                "column": "bill_billing_period_start_date"
+              },
+              "metric_name": "column_values.length.min",
+              "metric_value_kwargs": null
+            },
+            "num_batches": 1
+          }
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_match_regex",
+      "kwargs": {
+        "column": "bill_billing_period_start_date",
+        "mostly": 1.0,
+        "regex": "\\d+"
+      },
+      "meta": {
+        "profiler_details": {
+          "evaluated_regexes": {
+            "(?:25[0-5]|2[0-4]\\d|[01]\\d{2}|\\d{1,2})(?:.(?:25[0-5]|2[0-4]\\d|[01]\\d{2}|\\d{1,2})){3}": 1.0,
+            "-?\\d+": 1.0,
+            "-?\\d+(?:\\.\\d*)?": 1.0,
+            "<\\/?(?:p|a|b|img)(?: \\/)?>": 0.0,
+            "[A-Za-z0-9\\.,;:!?()\\\"'%\\-]+": 1.0,
+            "\\b[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}-[0-5][0-9a-fA-F]{3}-[089ab][0-9a-fA-F]{3}-\\b[0-9a-fA-F]{12}\\b ": 0.0,
+            "\\d+": 1.0,
+            "\\s+$": 0.0,
+            "^\\s+": 0.0,
+            "https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,255}\\.[a-z]{2,6}\\b(?:[-a-zA-Z0-9@:%_\\+.~#()?&//=]*)": 0.0
+          },
+          "success_ratio": 1.0
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_value_lengths_to_be_between",
+      "kwargs": {
+        "column": "usage_account_name",
+        "max_value": 39,
+        "min_value": 3,
+        "mostly": 1.0,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "column_max_length_range_estimator": {
+            "metric_configuration": {
+              "domain_kwargs": {
+                "column": "usage_account_name"
+              },
+              "metric_name": "column_values.length.max",
+              "metric_value_kwargs": null
+            },
+            "num_batches": 1
+          },
+          "column_min_length_range_estimator": {
+            "metric_configuration": {
+              "domain_kwargs": {
+                "column": "usage_account_name"
+              },
+              "metric_name": "column_values.length.min",
+              "metric_value_kwargs": null
+            },
+            "num_batches": 1
+          }
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_match_regex",
+      "kwargs": {
+        "column": "usage_account_name",
+        "mostly": 1.0,
+        "regex": "[A-Za-z0-9\\.,;:!?()\\\"'%\\-]+"
+      },
+      "meta": {
+        "profiler_details": {
+          "evaluated_regexes": {
+            "(?:25[0-5]|2[0-4]\\d|[01]\\d{2}|\\d{1,2})(?:.(?:25[0-5]|2[0-4]\\d|[01]\\d{2}|\\d{1,2})){3}": 0.0,
+            "-?\\d+": 0.028132992327365727,
+            "-?\\d+(?:\\.\\d*)?": 0.028132992327365727,
+            "<\\/?(?:p|a|b|img)(?: \\/)?>": 0.0,
+            "[A-Za-z0-9\\.,;:!?()\\\"'%\\-]+": 1.0,
+            "\\b[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}-[0-5][0-9a-fA-F]{3}-[089ab][0-9a-fA-F]{3}-\\b[0-9a-fA-F]{12}\\b ": 0.0,
+            "\\d+": 0.028132992327365727,
+            "\\s+$": 0.0,
+            "^\\s+": 0.0,
+            "https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,255}\\.[a-z]{2,6}\\b(?:[-a-zA-Z0-9@:%_\\+.~#()?&//=]*)": 0.0
+          },
+          "success_ratio": 1.0
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_value_lengths_to_be_between",
+      "kwargs": {
+        "column": "product_product_name",
+        "max_value": 52,
+        "min_value": 7,
+        "mostly": 1.0,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "column_max_length_range_estimator": {
+            "metric_configuration": {
+              "domain_kwargs": {
+                "column": "product_product_name"
+              },
+              "metric_name": "column_values.length.max",
+              "metric_value_kwargs": null
+            },
+            "num_batches": 1
+          },
+          "column_min_length_range_estimator": {
+            "metric_configuration": {
+              "domain_kwargs": {
+                "column": "product_product_name"
+              },
+              "metric_name": "column_values.length.min",
+              "metric_value_kwargs": null
+            },
+            "num_batches": 1
+          }
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_match_regex",
+      "kwargs": {
+        "column": "product_product_name",
+        "mostly": 1.0,
+        "regex": "[A-Za-z0-9\\.,;:!?()\\\"'%\\-]+"
+      },
+      "meta": {
+        "profiler_details": {
+          "evaluated_regexes": {
+            "(?:25[0-5]|2[0-4]\\d|[01]\\d{2}|\\d{1,2})(?:.(?:25[0-5]|2[0-4]\\d|[01]\\d{2}|\\d{1,2})){3}": 0.0,
+            "-?\\d+": 0.08184143222506395,
+            "-?\\d+(?:\\.\\d*)?": 0.08184143222506395,
+            "<\\/?(?:p|a|b|img)(?: \\/)?>": 0.0,
+            "[A-Za-z0-9\\.,;:!?()\\\"'%\\-]+": 1.0,
+            "\\b[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}-[0-5][0-9a-fA-F]{3}-[089ab][0-9a-fA-F]{3}-\\b[0-9a-fA-F]{12}\\b ": 0.0,
+            "\\d+": 0.08184143222506395,
+            "\\s+$": 0.0,
+            "^\\s+": 0.0,
+            "https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,255}\\.[a-z]{2,6}\\b(?:[-a-zA-Z0-9@:%_\\+.~#()?&//=]*)": 0.0
+          },
+          "success_ratio": 1.0
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_set",
+      "kwargs": {
+        "column": "bill_billing_period_end_date",
+        "mostly": 1.0,
+        "value_set": [
+          "2023-06-01"
+        ]
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "bill_billing_period_end_date"
+            },
+            "metric_name": "column.distinct_values",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1,
+          "parse_strings_as_datetimes": false
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_unique_value_count_to_be_between",
+      "kwargs": {
+        "column": "bill_billing_period_end_date",
+        "max_value": 1,
+        "min_value": 1,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "bill_billing_period_end_date"
+            },
+            "metric_name": "column.distinct_values.count",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_proportion_of_unique_values_to_be_between",
+      "kwargs": {
+        "column": "bill_billing_period_end_date",
+        "max_value": 0.0025575447570332483,
+        "min_value": 0.0025575447570332483,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "bill_billing_period_end_date"
+            },
+            "metric_name": "column.unique_proportion",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_set",
+      "kwargs": {
+        "column": "bill_billing_period_start_date",
+        "mostly": 1.0,
+        "value_set": [
+          "2023-05-01"
+        ]
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "bill_billing_period_start_date"
+            },
+            "metric_name": "column.distinct_values",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1,
+          "parse_strings_as_datetimes": false
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_unique_value_count_to_be_between",
+      "kwargs": {
+        "column": "bill_billing_period_start_date",
+        "max_value": 1,
+        "min_value": 1,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "bill_billing_period_start_date"
+            },
+            "metric_name": "column.distinct_values.count",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_proportion_of_unique_values_to_be_between",
+      "kwargs": {
+        "column": "bill_billing_period_start_date",
+        "max_value": 0.0025575447570332483,
+        "min_value": 0.0025575447570332483,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "bill_billing_period_start_date"
+            },
+            "metric_name": "column.unique_proportion",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_set",
+      "kwargs": {
+        "column": "usage_account_name",
+        "mostly": 1.0,
+        "value_set": [
+          "HCFMUSP",
+          "SPI - SP Intervention - ENE Medical",
+          "Taksim",
+          "SPI - SP Intervention",
+          "SMIT",
+          "Estre Ambiental",
+          "Treinamento VentureLabs",
+          "Cotrijal",
+          "Cordvida",
+          "[PRD] Diligente",
+          "Ceramica Atlas",
+          "[PRD] OTIMO SOCIEDADE DE CREDITO DIRETO",
+          "libelulanegra",
+          "Symbiomics",
+          "Hospital Santa Cruz",
+          "[DEV] Helpie",
+          "pakman",
+          "Oliv-e",
+          "GTM Chemicals",
+          "[DEV] OTIMO SOCIEDADE DE CREDITO DIRETO",
+          "JR_GX",
+          "dataRain Payeer 2",
+          "IHSL",
+          "Bipp Care",
+          "Hospital Sabara",
+          "PrimeDoctors",
+          "PUC-Campinas",
+          "[PRD] Helpie",
+          "Producao VentureLabs",
+          "Estre - Conta 2",
+          "[PRD] BluePay",
+          "EOS"
+        ]
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "usage_account_name"
+            },
+            "metric_name": "column.distinct_values",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1,
+          "parse_strings_as_datetimes": false
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_unique_value_count_to_be_between",
+      "kwargs": {
+        "column": "usage_account_name",
+        "max_value": 32,
+        "min_value": 32,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "usage_account_name"
+            },
+            "metric_name": "column.distinct_values.count",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_proportion_of_unique_values_to_be_between",
+      "kwargs": {
+        "column": "usage_account_name",
+        "max_value": 0.08184143222506395,
+        "min_value": 0.08184143222506395,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "usage_account_name"
+            },
+            "metric_name": "column.unique_proportion",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_set",
+      "kwargs": {
+        "column": "product_product_name",
+        "mostly": 1.0,
+        "value_set": [
+          "AWS Database Migration Service",
+          "Amazon Athena",
+          "Amazon Cognito",
+          "Amazon GuardDuty",
+          "Amazon SageMaker",
+          "Amazon Elastic Compute Cloud",
+          "AWS Config",
+          "AWS Cost Explorer",
+          "Amazon Pinpoint",
+          "OpenVPN Access Server (5 Connected Devices)",
+          "AmazonCloudWatch",
+          "AWS X-Ray",
+          "AWS Service Catalog",
+          "Elastic Load Balancing",
+          "AWS Transfer Family",
+          "Amazon API Gateway",
+          "Veeam Backup for AWS Paid Edition",
+          "Amazon Textract",
+          "AWS Amplify",
+          "Oracle Linux 7 with Support by Supported Images",
+          "AWS Backup",
+          "Amazon DocumentDB (with MongoDB compatibility)",
+          "AWS CodeArtifact",
+          "AWS CodeCommit",
+          "Amazon Simple Storage Service",
+          "AmazonWorkMail",
+          "Oracle Linux 8 with Support by Supported Images",
+          "Amazon Elastic Container Service",
+          "AWS Data Pipeline",
+          "Amazon Kinesis Firehose",
+          "Amazon Kinesis",
+          "Reverse Proxy Server using NGINX on Ubuntu",
+          "WordPress on Server 2019 + PhpMyAdmin + MySQL",
+          "Amazon OpenSearch Service",
+          "ZoneMinder:  Build Your Own Security Camera Solution",
+          "Amazon QuickSight",
+          "Amazon Lightsail",
+          "Amazon Redshift",
+          "Amazon Relational Database Service",
+          "Amazon Simple Email Service",
+          "Amazon EC2 Container Registry (ECR)",
+          "AWS Step Functions",
+          "AWS Data Transfer",
+          "AWS Application Migration Service",
+          "Amazon Virtual Private Cloud",
+          "AWS Glue",
+          "Amazon Elastic File System",
+          "Amazon DynamoDB",
+          "Amazon Simple Notification Service",
+          "AWS CloudTrail",
+          "Amazon ElastiCache",
+          "Amazon Simple Queue Service",
+          "AWS Key Management Service",
+          "Amazon CloudFront",
+          "Amazon Registrar",
+          "Amazon S3 Glacier Deep Archive",
+          "AWS Lambda",
+          "AWS Secrets Manager",
+          "AWS Systems Manager",
+          "AWS Support (Business)",
+          "Amazon Route 53",
+          "Amazon Rekognition",
+          "AWS Direct Connect",
+          "AWS CloudShell",
+          "AWS WAF",
+          "CloudWatch Events"
+        ]
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "product_product_name"
+            },
+            "metric_name": "column.distinct_values",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1,
+          "parse_strings_as_datetimes": false
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_unique_value_count_to_be_between",
+      "kwargs": {
+        "column": "product_product_name",
+        "max_value": 66,
+        "min_value": 66,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "product_product_name"
+            },
+            "metric_name": "column.distinct_values.count",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_proportion_of_unique_values_to_be_between",
+      "kwargs": {
+        "column": "product_product_name",
+        "max_value": 0.16879795396419436,
+        "min_value": 0.16879795396419436,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "product_product_name"
+            },
+            "metric_name": "column.unique_proportion",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_set",
+      "kwargs": {
+        "column": "credits",
+        "mostly": 1.0,
+        "value_set": [
+          -0.9872410716,
+          -0.9231847957,
+          -0.8400024864,
+          -0.7091311334,
+          -0.5979335201999997,
+          -0.2532735153999969,
+          -122.4506473167,
+          -0.0957596639999998,
+          0.0,
+          -631.3127620916,
+          -1.602e-05,
+          -242.4416088236,
+          -3.1248,
+          -2.3319531302999983,
+          -0.1061250435,
+          -5.696e-06,
+          -90.1065087912,
+          -5.0930793396,
+          -4.326515653399999,
+          -81.6801740142,
+          -205.3568429217,
+          -331.7651364525,
+          -2.4204542311,
+          -0.0003298172,
+          -0.1635093779,
+          -3.57e-05,
+          -0.0228907596999994,
+          -53.7674342399,
+          -1.0044016724999991,
+          -306.9693526833,
+          -49.1234325678,
+          -0.01742709,
+          -9.2093e-06,
+          -39.9079268972,
+          -39.1600632256,
+          -261.2004066934,
+          -0.1202789339999998,
+          -30.1710632256,
+          -24.854857101,
+          -1.9871e-06,
+          -7.12e-05,
+          -14.8827724429,
+          -11.1067859215,
+          -266.5531107526,
+          -5.3453125524,
+          -4.709818589999999,
+          -3.3600099456,
+          -2.6774015685,
+          -1.2725324639999998
+        ]
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "credits"
+            },
+            "metric_name": "column.distinct_values",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1,
+          "parse_strings_as_datetimes": false
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_unique_value_count_to_be_between",
+      "kwargs": {
+        "column": "credits",
+        "max_value": 49,
+        "min_value": 49,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "credits"
+            },
+            "metric_name": "column.distinct_values.count",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_proportion_of_unique_values_to_be_between",
+      "kwargs": {
+        "column": "credits",
+        "max_value": 0.12531969309462915,
+        "min_value": 0.12531969309462915,
+        "strict_max": false,
+        "strict_min": false
+      },
+      "meta": {
+        "profiler_details": {
+          "metric_configuration": {
+            "domain_kwargs": {
+              "column": "credits"
+            },
+            "metric_name": "column.unique_proportion",
+            "metric_value_kwargs": null
+          },
+          "num_batches": 1
+        }
+      }
+    }
+  ],
+  "ge_cloud_id": null,
+  "meta": {
+    "citations": [
+      {
+        "citation_date": "2023-07-24T18:08:40.012366Z",
+        "comment": "Created by effective Rule-Based Profiler of OnboardingDataAssistant with the configuration included.\n"
+      }
+    ],
+    "great_expectations_version": "0.17.6"
+  }
+}
