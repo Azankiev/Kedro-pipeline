@@ -13,37 +13,37 @@ def create_pipeline(**kwargs) -> Pipeline:
             func=preprocess_accounts_per_org, 
             inputs='accounts_per_organization',
             outputs='processed_accounts_per_organization',
-            tags=['de_infra2', 'infra2', 'de_rnp', 'rnp']
+            tags=['de_cliente', 'cliente', 'de_cliente', 'cliente']
         ),
         node(
             func=aggregate_invoice_account_products,
-            inputs='infra2_cur_dataset',
-            outputs='infra2_cur_dataset_agg',
-            tags=['de_infra2', 'infra2']
+            inputs='cliente_cur_dataset',
+            outputs='cliente_cur_dataset_agg',
+            tags=['de_cliente', 'cliente']
         ),
         node(
             func=add_account_names,
-            inputs=['infra2_cur_dataset_agg', 'processed_accounts_per_organization'],
-            outputs='infra2_cur_dataset_agg_enriched',
-            tags=['de_infra2', 'infra2', 'infra2_add_account_names']
+            inputs=['cliente_cur_dataset_agg', 'processed_accounts_per_organization'],
+            outputs='cliente_cur_dataset_agg_enriched',
+            tags=['de_cliente', 'cliente', 'cliente_add_account_names']
         ),
         node(
             func=aggregate_invoice_account_products,
-            inputs='rnp_cur_dataset',
-            outputs='rnp_cur_dataset_agg',
-            tags=['de_rnp', 'rnp']
+            inputs='cliente_cur_dataset',
+            outputs='cliente_cur_dataset_agg',
+            tags=['de_cliente', 'cliente']
         ),
         node(
             func=add_account_names,
-            inputs=['rnp_cur_dataset_agg', 'processed_accounts_per_organization'],
-            outputs='rnp_cur_dataset_agg_enriched',
-            tags=['de_rnp', 'rnp', 'rnp_add_account_names']
+            inputs=['cliente_cur_dataset_agg', 'processed_accounts_per_organization'],
+            outputs='cliente_cur_dataset_agg_enriched',
+            tags=['de_cliente', 'cliente', 'cliente_add_account_names']
         ),
         # node(
         #     func=merge_cur_partitions,
-        #     inputs='infra2_cur_dataset',
-        #     outputs='infra2_cur_dataset_merged',
-        #     tags=['de_infra2', 'infra2']
+        #     inputs='cliente_cur_dataset',
+        #     outputs='cliente_cur_dataset_merged',
+        #     tags=['de_cliente', 'cliente']
         # ),
 
 

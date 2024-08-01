@@ -12,32 +12,32 @@ def create_pipeline(**kwargs) -> Pipeline:
     return pipeline([
         node(
             func=preprocess_cur, 
-            inputs=['s3_pocs_cur_dataset', 
+            inputs=['s3_cliente_cur_dataset', 
                     'params:data_prep_raw_params'], 
-            outputs='pocs_cur_dataset',
-            tags=['di_pocs', 'pocs']
+            outputs='cliente_cur_dataset',
+            tags=['di_cliente', 'cliente']
         ),
         node(
             func=preprocess_cur, 
-            inputs=['s3_intelbras_cur_dataset', 
+            inputs=['s3_cliente_cur_dataset', 
                     'params:data_prep_raw_params'], 
-            outputs='intelbras_cur_dataset',
-            tags=['di_intebras', 'intelbras']
+            outputs='cliente_cur_dataset',
+            tags=['di_intebras', 'cliente']
         ),
         node(
             func=preprocess_cur, 
-            inputs=['s3_infra2_cur_dataset', 
+            inputs=['s3_cliente_cur_dataset', 
                     'parameters'], 
-            outputs='infra2_cur_dataset',
-            name='infra2_preprocess_cur',
-            tags=['di_infra2', 'infra2']
+            outputs='cliente_cur_dataset',
+            name='cliente_preprocess_cur',
+            tags=['di_cliente', 'cliente']
         ),
         node(
             func=preprocess_cur, 
-            inputs=['s3_rnp_cur_dataset', 
+            inputs=['s3_cliente_cur_dataset', 
                     'parameters'], 
-            outputs='rnp_cur_dataset',
-            name='rnp_preprocess_cur',
-            tags=['di_rnp', 'rnp']
+            outputs='cliente_cur_dataset',
+            name='cliente_preprocess_cur',
+            tags=['di_cliente', 'cliente']
         )
     ], tags='di')
